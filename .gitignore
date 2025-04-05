@@ -1,0 +1,71 @@
+# === Android/IntelliJ related ===
+
+# Build folders
+/build/
+/*/build/
+
+# Gradle
+.gradle/
+**/build/
+**/.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration files (IDE-specific)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# User-specific configuration
+local.properties
+
+# Log and crash files
+*.log
+
+# Android Studio Navigation Editor temp files
+.navigation/
+
+# Keystore files (¡nunca subirlos!)
+*.jks
+
+# Signed APKs
+*.apk
+*.ap_
+
+# Bundle files
+*.aab
+
+# NDK and CMake cache
+.cxx/
+.externalNativeBuild/
+
+# Kotlin specific
+*.kotlin_module
+
+# Miscellaneous
+*.DS_Store
+*.class
+*.lock
+*.swp
+*.swo
+*.tmp
+
+# OS-specific
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Jetpack Compose previews
+*.preview
+
+# Gradle caches
+/caches/
