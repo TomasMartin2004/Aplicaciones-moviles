@@ -1,43 +1,44 @@
 package com.example.tp1
 
-import android.os.Bundle
+import android.content.Context
+
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.tp1.ui.theme.Tp1Theme
 
 import com.example.tp1.ui.theme.Nord0
-import com.example.tp1.ui.theme.Nord1
 import com.example.tp1.ui.theme.Nord2
 import com.example.tp1.ui.theme.Nord3
 import com.example.tp1.ui.theme.White
 
+import androidx.navigation.NavHostController
+import androidx.compose.ui.Alignment
 
-class LoginActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Tp1Theme {
-                LoginScreen()
-            }
-        }
-    }
-}
 
+//pasa a ser un composable en vez de un activity
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavHostController) {
     val context = LocalContext.current
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+    var usernameError by remember { mutableStateOf<String?>(null) }
+    var passwordError by remember { mutableStateOf<String?>(null) }
+
     val correctUsername = "Juan Torres"
     val correctPassword = "1234utn"
+
+    fun validate(): Boolean {
+        usernameError = if (username.isBlank()) "El usuario no puede estar vacío" else null
+        passwordError = if (password.isBlank()) "La contraseña no puede estar vacía" else null
+
+        return usernameError == null && passwordError == null
+    }
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -47,6 +48,7 @@ fun LoginScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Text(
@@ -59,15 +61,20 @@ fun LoginScreen() {
 
             OutlinedTextField(
                 value = username,
-                onValueChange = { username = it },
+                onValueChange = { username = it; usernameError = null },
                 label = { Text("Usuario", color = Nord2) },
                 modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                isError = usernameError != null,
+                supportingText = { if (usernameError != null) Text(usernameError!!, color = MaterialTheme.colorScheme.error) },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = White,
                     unfocusedTextColor = White,
                     focusedBorderColor = Nord3,
                     unfocusedBorderColor = Nord3,
-                    cursorColor = White
+                    cursorColor = White,
+                    errorLabelColor = MaterialTheme.colorScheme.error
+
                 )
             )
 
@@ -75,15 +82,19 @@ fun LoginScreen() {
 
             OutlinedTextField(
                 value = password,
-                onValueChange = { password = it },
+                onValueChange = { password = it; passwordError = null },
                 label = { Text("Contraseña", color = Nord2) },
                 modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                isError = passwordError != null,
+                supportingText = { if (passwordError != null) Text(passwordError!!, color = MaterialTheme.colorScheme.error) },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = White,
                     unfocusedTextColor = White,
                     focusedBorderColor = Nord2,
                     unfocusedBorderColor = Nord3,
-                    cursorColor = White
+                    cursorColor = White,
+                    errorLabelColor = MaterialTheme.colorScheme.error
                 )
             )
 
@@ -91,10 +102,12 @@ fun LoginScreen() {
 
             Button(
                 onClick = {
-                    if (username == correctUsername && password == correctPassword) {
-                        Toast.makeText(context, "Login exitoso", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_SHORT).show()
+                    if (validate()) {
+                        if (username == correctUsername && password == correctPassword) {
+                            Toast.makeText(context, "Login exitoso", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
@@ -105,6 +118,23 @@ fun LoginScreen() {
             ) {
                 Text("Ingresar")
             }
+
+            TextButton(
+                onClick = {
+                    navController.navigate(AppDestinations.REGISTER_ROUTE) //navega a la ruta de registro
+                },
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text(
+                    "¿No tienes cuenta? Regístrate aquí",
+                    color = Nord3 // Usa colores de tu tema
+                )
+            }
+
         }
     }
+}
+
+fun showToast(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
