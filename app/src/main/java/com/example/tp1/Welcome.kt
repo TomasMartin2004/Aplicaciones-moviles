@@ -3,6 +3,7 @@ package com.example.tp1
 import android.content.Context
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +20,8 @@ import com.example.tp1.ui.theme.White
 
 import androidx.navigation.NavHostController
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 
 @Composable
 fun WelcomeScreen(navController: NavHostController, username: String) {
@@ -30,7 +33,11 @@ fun WelcomeScreen(navController: NavHostController, username: String) {
 
     var otherPreference by remember { mutableStateOf("") }
 
-
+    val logoRes = when (selectedPlatform) {
+        "Android" -> R.drawable.ic_android_logo
+        "iOS"     -> R.drawable.ic_ios_logo
+        else      -> null
+    }
 
 
     Surface(
@@ -52,7 +59,11 @@ fun WelcomeScreen(navController: NavHostController, username: String) {
             Spacer(modifier = Modifier.height(8.dp))
 
             // Selector de plataforma
-            Text(text = "Selecciona tu plataforma:", color = White )
+            Text(
+                text = "Selecciona tu plataforma:",
+                style = MaterialTheme.typography.headlineSmall,
+                color = White
+            )
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 listOf("Android", "iOS").forEach { platform ->
                     Button(
@@ -65,13 +76,25 @@ fun WelcomeScreen(navController: NavHostController, username: String) {
                         Text(platform)
                     }
                 }
+            }
 
-                //TODO Icono Android e IOs
+            Spacer(modifier = Modifier.height(8.dp))
+            logoRes?.let {
+                Image(
+                    painter = painterResource(id = it),
+                    contentDescription = "Logo de $selectedPlatform",
+                    modifier = Modifier.size(100.dp),
+                    colorFilter = ColorFilter.tint(White)
+                )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(text = "Selecciona tus preferencias:", color = White)
+            Text(
+                text = "Selecciona tus preferencias:",
+                style = MaterialTheme.typography.headlineSmall,
+                color = White
+            )
             preferences.forEach { pref ->
                 Column {
                     Row(
