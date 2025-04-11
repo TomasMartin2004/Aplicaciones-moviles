@@ -1,6 +1,7 @@
 package com.example.tp1
 
 import android.content.Context
+import android.net.Uri
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -105,6 +106,7 @@ fun LoginScreen(navController: NavHostController) {
                     if (validate()) {
                         if (username == correctUsername && password == correctPassword) {
                             Toast.makeText(context, "Login exitoso", Toast.LENGTH_SHORT).show()
+                            navController.navigate("welcome/${Uri.encode(username)}")
                         } else {
                             Toast.makeText(context, "Datos incorrectos", Toast.LENGTH_SHORT).show()
                         }

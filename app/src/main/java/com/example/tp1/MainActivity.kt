@@ -17,6 +17,7 @@ import com.example.tp1.ui.theme.Tp1Theme
 object AppDestinations {
     const val LOGIN_ROUTE = "login"
     const val REGISTER_ROUTE = "register"
+    const val WELCOME_ROUTE = "welcome/{username}"
 }
 
 class MainActivity : ComponentActivity() {
@@ -44,6 +45,15 @@ fun AppNavigation() {
         composable(route = AppDestinations.REGISTER_ROUTE) {
             RegisterScreen(navController = navController)
         }
+
+        composable(
+            route = AppDestinations.WELCOME_ROUTE,
+            arguments = listOf(navArgument("username") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val username = backStackEntry.arguments?.getString("username") ?: "Usuario"
+            WelcomeScreen(navController = navController, username = username)
+        }
+
 
     }
 }
