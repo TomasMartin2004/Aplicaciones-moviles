@@ -1,19 +1,14 @@
 package com.example.tp1
 
-import android.content.Context
-
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
 import com.example.tp1.ui.theme.Nord0
-import com.example.tp1.ui.theme.Nord1
 import com.example.tp1.ui.theme.Nord2
 import com.example.tp1.ui.theme.Nord3
 import com.example.tp1.ui.theme.White
@@ -25,7 +20,6 @@ import androidx.compose.ui.res.painterResource
 
 @Composable
 fun WelcomeScreen(navController: NavHostController, username: String) {
-    val context = LocalContext.current
     var selectedPlatform by remember { mutableStateOf("") }
     val preferences = listOf("Programación", "Redes", "Seguridad", "Hardware", "Otra")
     val selectedPrefs = remember { mutableStateMapOf<String, Boolean>() }
