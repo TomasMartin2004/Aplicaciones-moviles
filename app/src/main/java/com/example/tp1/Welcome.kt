@@ -98,8 +98,6 @@ fun WelcomeScreen(navController: NavHostController, username: String) {
                     }
                 }
             }
-
-            // Sección: Preferencias
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()

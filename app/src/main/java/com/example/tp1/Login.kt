@@ -22,8 +22,6 @@ import com.example.tp1.ui.theme.White
 import androidx.navigation.NavHostController
 import androidx.compose.ui.Alignment
 
-
-//pasa a ser un composable en vez de un activity
 @Composable
 fun LoginScreen(navController: NavHostController) {
     val context = LocalContext.current
@@ -100,9 +98,7 @@ fun LoginScreen(navController: NavHostController) {
 
                         )
                     )
-
                     Spacer(modifier = Modifier.height(8.dp))
-
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it; passwordError = null },
@@ -125,9 +121,7 @@ fun LoginScreen(navController: NavHostController) {
                             errorLabelColor = MaterialTheme.colorScheme.error
                         )
                     )
-
                     Spacer(modifier = Modifier.height(16.dp))
-
                     Button(
                         onClick = {
                             if (validate()) {
@@ -149,7 +143,6 @@ fun LoginScreen(navController: NavHostController) {
                     ) {
                         Text("Ingresar")
                     }
-
                     TextButton(
                         onClick = {
                             navController.navigate(AppDestinations.REGISTER_ROUTE)
@@ -161,7 +154,6 @@ fun LoginScreen(navController: NavHostController) {
                             color = Nord4
                         )
                     }
-
                 }
             }
         }
