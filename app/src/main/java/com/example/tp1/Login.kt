@@ -18,6 +18,7 @@ import com.example.tp1.ui.theme.Nord2
 import com.example.tp1.ui.theme.Nord3
 import com.example.tp1.ui.theme.Nord4
 import com.example.tp1.ui.theme.White
+import com.example.tp1.ui.theme.ErrorLightRed
 
 import androidx.navigation.NavHostController
 import androidx.compose.ui.Alignment
@@ -54,7 +55,7 @@ fun LoginScreen(navController: NavHostController) {
             Surface(
                 modifier = Modifier
                     .widthIn(max = 400.dp)
-                    .heightIn(min = 300.dp, max = 450.dp)
+                    .heightIn(min = 400.dp, max = 470.dp)
                     .padding(32.dp),
                 color = Nord1,
                 shape = MaterialTheme.shapes.medium,
@@ -78,14 +79,14 @@ fun LoginScreen(navController: NavHostController) {
                     OutlinedTextField(
                         value = username,
                         onValueChange = { username = it; usernameError = null },
-                        label = { Text("Usuario", color = Nord3) },
+                        label = { Text("Usuario...", color = Nord3) },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                         isError = usernameError != null,
                         supportingText = {
                             if (usernameError != null) Text(
                                 usernameError!!,
-                                color = MaterialTheme.colorScheme.error
+                                color = ErrorLightRed
                             )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
@@ -94,7 +95,8 @@ fun LoginScreen(navController: NavHostController) {
                             focusedBorderColor = Nord3,
                             unfocusedBorderColor = Nord3,
                             cursorColor = White,
-                            errorLabelColor = MaterialTheme.colorScheme.error
+                            errorLabelColor = ErrorLightRed,
+                            errorBorderColor = ErrorLightRed,
 
                         )
                     )
@@ -102,14 +104,14 @@ fun LoginScreen(navController: NavHostController) {
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it; passwordError = null },
-                        label = { Text("Contraseña", color = Nord3) },
+                        label = { Text("Contraseña...", color = Nord3) },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                         isError = passwordError != null,
                         supportingText = {
                             if (passwordError != null) Text(
                                 passwordError!!,
-                                color = MaterialTheme.colorScheme.error
+                                color = ErrorLightRed
                             )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
@@ -118,7 +120,8 @@ fun LoginScreen(navController: NavHostController) {
                             focusedBorderColor = Nord3,
                             unfocusedBorderColor = Nord3,
                             cursorColor = White,
-                            errorLabelColor = MaterialTheme.colorScheme.error
+                            errorLabelColor = ErrorLightRed,
+                            errorBorderColor = ErrorLightRed,
                         )
                     )
                     Spacer(modifier = Modifier.height(16.dp))

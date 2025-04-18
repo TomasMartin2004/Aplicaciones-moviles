@@ -15,6 +15,7 @@ import com.example.tp1.ui.theme.Nord2
 import com.example.tp1.ui.theme.Nord3
 import com.example.tp1.ui.theme.Nord4
 import com.example.tp1.ui.theme.White
+import com.example.tp1.ui.theme.ErrorLightRed
 
 @Composable
 fun RegisterScreen(navController: NavHostController) {
@@ -54,7 +55,7 @@ fun RegisterScreen(navController: NavHostController) {
             Surface(
                 modifier = Modifier
                     .widthIn(max = 400.dp)
-                    .heightIn(min = 300.dp, max = 700.dp)
+                    .heightIn(min = 300.dp, max = 730.dp)
                     .padding(32.dp),
                 color = Nord1,
                 shape = MaterialTheme.shapes.medium,
@@ -86,19 +87,19 @@ fun RegisterScreen(navController: NavHostController) {
                         supportingText = {
                             if (nameError != null) Text(
                                 nameError!!,
-                                color = MaterialTheme.colorScheme.error
+                                color = ErrorLightRed
                             )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedTextColor = White,
                             unfocusedTextColor = White,
                             focusedBorderColor = Nord3,
-                            unfocusedBorderColor = Nord2,
+                            unfocusedBorderColor = Nord3,
                             cursorColor = White,
                             focusedLabelColor = White,
-                            unfocusedLabelColor = Nord2,
-                            errorBorderColor = MaterialTheme.colorScheme.error,
-                            errorLabelColor = MaterialTheme.colorScheme.error
+                            unfocusedLabelColor = Nord3,
+                            errorBorderColor = ErrorLightRed,
+                            errorLabelColor = ErrorLightRed
                         )
                     )
                     Spacer(modifier = Modifier.height(16.dp))
@@ -113,19 +114,19 @@ fun RegisterScreen(navController: NavHostController) {
                         supportingText = {
                             if (emailError != null) Text(
                                 emailError!!,
-                                color = MaterialTheme.colorScheme.error
+                                color = ErrorLightRed
                             )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedTextColor = White,
                             unfocusedTextColor = White,
                             focusedBorderColor = Nord3,
-                            unfocusedBorderColor = Nord2,
+                            unfocusedBorderColor = Nord3,
                             cursorColor = White,
                             focusedLabelColor = White,
-                            unfocusedLabelColor = Nord2,
-                            errorBorderColor = MaterialTheme.colorScheme.error,
-                            errorLabelColor = MaterialTheme.colorScheme.error
+                            unfocusedLabelColor = Nord3,
+                            errorBorderColor = ErrorLightRed,
+                            errorLabelColor = ErrorLightRed
                         )
                     )
                     Spacer(modifier = Modifier.height(16.dp))
@@ -143,19 +144,19 @@ fun RegisterScreen(navController: NavHostController) {
                         supportingText = {
                             if (passwordError != null) Text(
                                 passwordError!!,
-                                color = MaterialTheme.colorScheme.error
+                                color = ErrorLightRed
                             )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedTextColor = White,
                             unfocusedTextColor = White,
                             focusedBorderColor = Nord3,
-                            unfocusedBorderColor = Nord2,
+                            unfocusedBorderColor = Nord3,
                             cursorColor = White,
                             focusedLabelColor = White,
-                            unfocusedLabelColor = Nord2,
-                            errorBorderColor = MaterialTheme.colorScheme.error,
-                            errorLabelColor = MaterialTheme.colorScheme.error
+                            unfocusedLabelColor = Nord3,
+                            errorBorderColor = ErrorLightRed,
+                            errorLabelColor = ErrorLightRed
                         )
                     )
                     Spacer(modifier = Modifier.height(16.dp))
@@ -171,20 +172,20 @@ fun RegisterScreen(navController: NavHostController) {
                         supportingText = {
                             if (confirmPasswordError != null) Text(
                                 confirmPasswordError!!,
-                                color = MaterialTheme.colorScheme.error
+                                color = ErrorLightRed
                             )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedTextColor = White,
                             unfocusedTextColor = White,
                             focusedBorderColor = Nord3,
-                            unfocusedBorderColor = Nord2,
+                            unfocusedBorderColor = Nord3,
                             cursorColor = White,
                             focusedLabelColor = White,
-                            unfocusedLabelColor = Nord2,
-                            errorBorderColor = MaterialTheme.colorScheme.error,
-                            errorLabelColor = MaterialTheme.colorScheme.error
-                        )
+                            unfocusedLabelColor = Nord3,
+                            errorBorderColor = ErrorLightRed,
+                            errorLabelColor = ErrorLightRed,
+                            )
                     )
 
                     Spacer(modifier = Modifier.height(24.dp))
